@@ -1,6 +1,8 @@
 <template>
   <ul>
-    <li :key="candidate.id" v-for="candidate in candidates">{{ candidate.name }}</li>
+    <li :key="candidate.id" v-for="candidate in candidates">
+      {{ candidate.name }}
+    </li>
   </ul>
 </template>
 
@@ -35,5 +37,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
