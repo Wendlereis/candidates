@@ -29,6 +29,9 @@
       "node": true,
       "es6": true
     },
+    "plugins": [
+      "prettier"
+    ],
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended",
