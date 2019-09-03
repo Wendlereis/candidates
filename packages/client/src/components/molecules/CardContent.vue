@@ -1,0 +1,110 @@
+<template>
+  <ul class="card-list">
+    <li class="card-list__item">
+      <img
+        class="card-list__image"
+        src="../../assets/work-icn.svg"
+        :alt="`icon of work information`"
+      />
+      <Label class="card-list__description" :text="works" body />
+    </li>
+
+    <li class="card-list__item">
+      <img
+        class="card-list__image"
+        src="../../assets/study-icn.svg"
+        :alt="`icon of work information`"
+      />
+      <Label class="card-list__description" :text="candidate.university" body />
+    </li>
+
+    <li class="card-list__item">
+      <img
+        class="card-list__image"
+        src="../../assets/location-icn.svg"
+        :alt="`icon of work information`"
+      />
+      <Label class="card-list__description" :text="cities" body />
+    </li>
+
+    <li class="card-list__item">
+      <img
+        class="card-list__image"
+        src="../../assets/skills-icn.svg"
+        :alt="`icon of work information`"
+      />
+
+      <span class="card-list_skills">
+        <Label class="card-list__description" text="Principais Habilidades:" body />
+        <Badge :key="skill" v-for="skill in candidate.mainSkills" :text="skill" />
+      </span>
+    </li>
+  </ul>
+</template>
+
+<script>
+import Label from '../atoms/Label'
+import Badge from '../molecules/Badge'
+
+export default {
+  name: 'CardContent',
+  data: function() {
+    return {
+      works: '',
+      cities: ''
+    }
+  },
+  props: {
+    candidate: Object
+  },
+  components: {
+    Label,
+    Badge
+  },
+  methods: {
+    handleWorks: function(works) {
+      const [firstCompany, secondCompany, ...rest] = works
+      this.works = `${firstCompany}, ${secondCompany} e ${rest.length} outras empresas`
+    },
+    handleCities: function(cities) {
+      const [firstCity, secondCity, ...rest] = cities
+      this.cities = `Disposto a trabalhar em: ${firstCity}, ${secondCity} e mais ${rest.length} cidades`
+    }
+  },
+  mounted: function() {
+    this.handleWorks(this.candidate.lastCompanies)
+    this.handleCities(this.candidate.cities)
+  }
+}
+</script>
+
+<style scoped>
+.card-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card-list__item {
+  display: flex;
+  align-items: center;
+}
+
+.card-list__item + .card-list__item {
+  margin-top: 4px;
+}
+
+.card-list__image {
+  width: 16px;
+  height: 16px;
+}
+
+.card-list__image + .card-list__description,
+.card-list__image + .card-list_skills {
+  margin-left: 8px;
+}
+
+.card-list_skills {
+  display: flex;
+}
+</style>
