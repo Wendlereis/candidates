@@ -1,5 +1,5 @@
 <template>
-  <button class="button">
+  <button class="button" @click="emitOnClick">
     <img :src="icon" :alt="`icon of button`" />
     <p>{{text}}</p>
   </button>
@@ -10,8 +10,12 @@ export default {
   name: 'Button',
   props: {
     text: String,
-    onClick: Function,
     icon: String
+  },
+  methods: {
+    emitOnClick: function() {
+      this.$emit('click')
+    }
   }
 }
 </script>
