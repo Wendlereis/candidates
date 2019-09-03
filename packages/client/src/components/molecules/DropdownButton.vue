@@ -1,6 +1,6 @@
 <template>
   <span class="dropdown-button">
-    <Button :icon="require('../../assets/dots.svg')" v-on:click="toggleItems" />
+    <Button class="dropdown-button__button" :icon="require('../../assets/dots.svg')" v-on:click="toggleItems" />
     <ul class="dropdown-button__list" v-show="showItems">
       <li
         class="dropdown-button__list-item"
@@ -38,9 +38,14 @@ export default {
 
 <style scoped>
 .dropdown-button {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 150px;
+}
+
+.dropdown-button__button {
+  align-self: flex-end;
 }
 
 .dropdown-button__list {
