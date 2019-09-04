@@ -2,16 +2,16 @@
   <header class="card-header">
     <section class="card-header__content">
       <span class="card-header__title">
-        <Label class="card-header__label" text="Fabio Crejoinas" variant="title" />
-        <Badge class="card-header__badge" text="Novo essa semana" highlight />
+        <Label class="card-header__label" :text="candidate.name" variant="title" />
+        <Badge v-if="candidate.newThisWeek" class="card-header__badge" text="Novo essa semana" highlight />
       </span>
 
-      <Label text="Desenvolvedor Full Stack" variant="body" />
+      <Label :text="candidate.career" variant="body" />
     </section>
 
     <section class="card-header__actions">
       <Button class="card-header__actions-item" :icon="require('../../assets/star.svg')" />
-      <DropdownButton class="card-header__actions-item" :items="items" />
+      <DropdownButton class="card-header__actions-item" :items="items"/>
     </section>
   </header>
 </template>
@@ -27,10 +27,14 @@ export default {
   data: function() {
     return {
       items: [{
+        id: this.candidate.id,
         text: 'Remover',
         action: this.removeItem
       }]
     }
+  },
+  props: {
+    candidate: Object
   },
   components: {
     Label,
@@ -39,8 +43,8 @@ export default {
     DropdownButton
   },
   methods: {
-    removeItem: function() {
-      console.log('this item will be removed');
+    removeItem: function(id) {
+      console.log(`the ${id} will be removed`);
     }
   }
 }
