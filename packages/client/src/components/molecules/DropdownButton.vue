@@ -6,7 +6,7 @@
         class="dropdown-button__list-item"
         v-for="item in items"
         :key="item.text"
-        @click="item.action(item.text)"
+        @click="item.action(item.id)"
       >{{item.text}}</li>
     </ul>
   </span>
