@@ -2,12 +2,20 @@
   <section class="candidates">
     <section class="candidates__favorites">
       <h2>Favorites</h2>
-      <Card :key="candidate.id" v-for="candidate in candidates" :candidate="candidate" />
+      <Card
+        :key="candidate.id"
+        v-for="candidate in candidates"
+        :candidate="candidate"
+      />
     </section>
 
     <section class="candidates__available">
       <h2>Candidates</h2>
-      <Card :key="candidate.id" v-for="candidate in candidates" :candidate="candidate" />
+      <Card
+        :key="candidate.id"
+        v-for="candidate in candidates"
+        :candidate="candidate"
+      />
     </section>
   </section>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <button class="button" @click="emitOnClick">
     <img :src="icon" :alt="`icon of button`" />
-    <p>{{text}}</p>
+    <p>{{ text }}</p>
   </button>
 </template>
 

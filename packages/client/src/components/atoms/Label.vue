@@ -16,23 +16,23 @@ export default {
   },
   props: {
     text: String,
-    variant: String,
+    variant: String
   },
   methods: {
     getStyle: function() {
       switch (this.variant) {
         case 'title':
           this.style = 'title'
-          break;
+          break
         case 'heading':
           this.style = 'heading'
-          break;
+          break
         case 'body':
           this.style = 'body'
-          break;
+          break
         default:
           this.style = 'body2'
-          break;
+          break
       }
     }
   },

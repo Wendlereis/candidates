@@ -1,7 +1,11 @@
 <template>
   <section class="card">
     <aside class="card__image">
-      <img class="card__image-item" :src="candidate.imageUrl" alt="candidate's profile photo">
+      <img
+        class="card__image-item"
+        :src="candidate.imageUrl"
+        alt="candidate's profile photo"
+      />
     </aside>
     <main class="card__details">
       <CardHeader class="card__details-header" :candidate="candidate" />

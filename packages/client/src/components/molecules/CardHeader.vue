@@ -3,7 +3,12 @@
     <section class="card-header__content">
       <span class="card-header__title">
         <Label class="card-header__label" :text="candidate.name" variant="title" />
-        <Badge v-if="candidate.newThisWeek" class="card-header__badge" text="Novo essa semana" highlight />
+        <Badge
+          v-if="candidate.newThisWeek"
+          class="card-header__badge"
+          text="Novo essa semana"
+          highlight
+        />
       </span>
 
       <Label :text="candidate.career" variant="body" />
@@ -11,7 +16,7 @@
 
     <section class="card-header__actions">
       <Button class="card-header__button" :icon="require('../../assets/star.svg')" />
-      <DropdownButton class="card-header__dropdownbutton" :items="items"/>
+      <DropdownButton class="card-header__dropdownbutton" :items="items" />
     </section>
   </header>
 </template>
@@ -26,11 +31,13 @@ export default {
   name: 'CardHeader',
   data: function() {
     return {
-      items: [{
-        id: this.candidate.id,
-        text: 'Remover',
-        action: this.removeItem
-      }]
+      items: [
+        {
+          id: this.candidate.id,
+          text: 'Remover',
+          action: this.removeItem
+        }
+      ]
     }
   },
   props: {
@@ -44,7 +51,7 @@ export default {
   },
   methods: {
     removeItem: function(id) {
-      console.log(`the ${id} will be removed`);
+      console.log(`the ${id} will be removed`)
     }
   }
 }
