@@ -1,14 +1,15 @@
 <template>
   <section class="card">
     <aside class="card__image">
-      <img
-        class="card__image-item"
-        :src="candidate.imageUrl"
-        alt="candidate's profile photo"
-      />
+      <img class="card__image-item" :src="candidate.imageUrl" alt="candidate's profile photo" />
     </aside>
     <main class="card__details">
-      <CardHeader class="card__details-header" :candidate="candidate" v-on:favorite-candidate="favoriteCandidate" />
+      <CardHeader
+        class="card__details-header"
+        :candidate="candidate"
+        v-on:favorite-candidate="favoriteCandidate"
+        v-on:delete-candidate="deleteCandidate"
+      />
       <CardContent class="card__details-content" :candidate="candidate" />
     </main>
   </section>
@@ -28,6 +29,10 @@ export default {
     CardContent
   },
   methods: {
+    deleteCandidate: function(id) {
+      this.$emit('delete-candidate', id)
+    },
+
     favoriteCandidate: function(candidate) {
       this.$emit('favorite-candidate', candidate)
     }

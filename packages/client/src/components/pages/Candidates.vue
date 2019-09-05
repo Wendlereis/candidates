@@ -2,7 +2,12 @@
   <section class="candidates">
     <section class="candidates__favorites">
       <h2>Favorites</h2>
-      <Card :key="favorite.id" v-for="favorite in favoriteCandidates" :candidate="favorite" />
+      <Card
+        :key="favorite.id"
+        v-for="favorite in favoriteCandidates"
+        :candidate="favorite"
+        v-on:delete-candidate="deleteCandidate"
+      />
     </section>
 
     <section class="candidates__available">
@@ -12,6 +17,7 @@
         v-for="candidate in candidates"
         :candidate="candidate"
         v-on:favorite-candidate="favoriteCandidate"
+        v-on:delete-candidate="deleteCandidate"
       />
     </section>
   </section>
@@ -61,6 +67,14 @@ export default {
       const favoriteCandidate = { ...candidate, favorite: true }
 
       await candidateService.update(favoriteCandidate)
+
+      this.getCandidates()
+    },
+
+    deleteCandidate: async function(id) {
+      const candidateService = new CandidateService()
+
+      await candidateService.delete(id)
 
       this.getCandidates()
     }

@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     deleteCandidate: function(id) {
-      console.log(`the ${id} will be removed`)
+      this.$emit('delete-candidate', id)
     },
 
     favoriteCandidate: function() {
