@@ -8,7 +8,7 @@
       />
     </aside>
     <main class="card__details">
-      <CardHeader class="card__details-header" :candidate="candidate" />
+      <CardHeader class="card__details-header" :candidate="candidate" v-on:favorite-candidate="favoriteCandidate" />
       <CardContent class="card__details-content" :candidate="candidate" />
     </main>
   </section>
@@ -26,6 +26,11 @@ export default {
   components: {
     CardHeader,
     CardContent
+  },
+  methods: {
+    favoriteCandidate: function(candidate) {
+      this.$emit('favorite-candidate', candidate)
+    }
   }
 }
 </script>

@@ -5,8 +5,8 @@ export default class CandidatesService {
     return api.get(`/candidates`)
   }
 
-  update(user) {
-    return api.put(`/candidates/${user.id}`)
+  update(candidate) {
+    return api.put(`/candidates/${candidate.id}`, candidate)
   }
 
   delete(id) {

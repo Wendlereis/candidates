@@ -2,12 +2,17 @@
   <section class="candidates">
     <section class="candidates__favorites">
       <h2>Favorites</h2>
-      <Card :key="candidate.id" v-for="candidate in candidates" :candidate="candidate" />
+      <Card :key="favorite.id" v-for="favorite in favoriteCandidates" :candidate="favorite" />
     </section>
 
     <section class="candidates__available">
       <h2>Candidates</h2>
-      <Card :key="candidate.id" v-for="candidate in candidates" :candidate="candidate" />
+      <Card
+        :key="candidate.id"
+        v-for="candidate in candidates"
+        :candidate="candidate"
+        v-on:favorite-candidate="favoriteCandidate"
+      />
     </section>
   </section>
 </template>
@@ -19,13 +24,11 @@ import CandidateService from '../../services/candidates'
 export default {
   data: function() {
     return {
-      candidates: []
+      candidates: [],
+      favoriteCandidates: []
     }
   },
   name: 'Candidates',
-  props: {
-    msg: String
-  },
   components: {
     Card
   },
@@ -46,7 +49,20 @@ export default {
         return 0
       })
 
-      this.candidates = candidates
+      this.favoriteCandidates = candidates.filter(
+        candidate => candidate.favorite
+      )
+      this.candidates = candidates.filter(candidate => !candidate.favorite)
+    },
+
+    favoriteCandidate: async function(candidate) {
+      const candidateService = new CandidateService()
+
+      const favoriteCandidate = { ...candidate, favorite: true }
+
+      await candidateService.update(favoriteCandidate)
+
+      this.getCandidates()
     }
   },
   mounted: function() {
