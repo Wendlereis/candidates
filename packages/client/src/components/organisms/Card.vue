@@ -4,8 +4,8 @@
       <img class="card__image-item" :src="candidate.imageUrl" alt="candidate's profile photo">
     </aside>
     <main class="card__details">
-      <CardHeader class="card__details-header" :candidate="candidate"></CardHeader>
-      <CardContent class="card__details-content" :candidate="candidate"></CardContent>
+      <CardHeader class="card__details-header" :candidate="candidate" />
+      <CardContent class="card__details-content" :candidate="candidate" />
     </main>
   </section>
 </template>
@@ -32,18 +32,23 @@ export default {
   padding: 24px;
   border: 1px solid #c7c7c7;
   border-radius: 4px;
-  max-width: 620px
+  max-width: 620px;
+  margin-bottom: 12px;
 }
 
 .card__image {
+  width: 100px;
   height: 100px;
 }
 
 .card__image-item {
+  width: inherit;
   height: inherit;
+  object-fit: cover;
 }
 
 .card__details {
+  width: 100%;
   margin-left: 24px;
 }
 
