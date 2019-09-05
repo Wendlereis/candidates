@@ -29,7 +29,7 @@ export default {
       candidates: []
     }
   },
-  name: 'HelloWorld',
+  name: 'Candidates',
   props: {
     msg: String
   },
