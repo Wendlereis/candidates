@@ -3,9 +3,10 @@
     <section class="candidates__favorites">
       <h2>Favorites</h2>
       <Card
-        :key="candidate.id"
-        v-for="candidate in candidates"
-        :candidate="candidate"
+        :key="favorite.id"
+        v-for="favorite in favoriteCandidates"
+        :candidate="favorite"
+        v-on:delete-candidate="deleteCandidate"
       />
     </section>
 
@@ -15,6 +16,8 @@
         :key="candidate.id"
         v-for="candidate in candidates"
         :candidate="candidate"
+        v-on:favorite-candidate="favoriteCandidate"
+        v-on:delete-candidate="deleteCandidate"
       />
     </section>
   </section>
@@ -22,47 +25,62 @@
 
 <script>
 import Card from '../organisms/Card'
+import CandidateService from '../../services/candidates'
 
 export default {
   data: function() {
     return {
-      candidates: []
+      candidates: [],
+      favoriteCandidates: []
     }
   },
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+  name: 'Candidates',
   components: {
     Card
   },
   methods: {
-    get: function() {
-      fetch('http://localhost:3000/candidates', {
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+    getCandidates: async function() {
+      const candidateService = new CandidateService()
+
+      const { data: candidates } = await candidateService.get()
+
+      candidates.sort((current, next) => {
+        var currentName = current.name
+        var nextName = next.name
+
+        if (currentName < nextName) return -1
+
+        if (currentName > nextName) return 1
+
+        return 0
       })
-        .then(response => response.json())
-        .then(json => {
-          json.sort((current, next) => {
-            var currentName = current.name
-            var nextName = next.name
 
-            if (currentName < nextName) return -1
+      this.favoriteCandidates = candidates.filter(
+        candidate => candidate.favorite
+      )
+      this.candidates = candidates.filter(candidate => !candidate.favorite)
+    },
 
-            if (currentName > nextName) return 1
+    favoriteCandidate: async function(candidate) {
+      const candidateService = new CandidateService()
 
-            return 0
-          })
+      const favoriteCandidate = { ...candidate, favorite: true }
 
-          this.candidates = json
-        })
+      await candidateService.update(favoriteCandidate)
+
+      this.getCandidates()
+    },
+
+    deleteCandidate: async function(id) {
+      const candidateService = new CandidateService()
+
+      await candidateService.delete(id)
+
+      this.getCandidates()
     }
   },
   mounted: function() {
-    this.get()
+    this.getCandidates()
   }
 }
 </script>

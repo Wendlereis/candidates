@@ -15,7 +15,12 @@
     </section>
 
     <section class="card-header__actions">
-      <Button class="card-header__button" :icon="require('../../assets/star.svg')" />
+      <Button
+        v-if="!candidate.favorite"
+        class="card-header__button"
+        :icon="require('../../assets/star.svg')"
+        v-on:click="favoriteCandidate"
+      />
       <DropdownButton class="card-header__dropdownbutton" :items="items" />
     </section>
   </header>
@@ -35,7 +40,7 @@ export default {
         {
           id: this.candidate.id,
           text: 'Remover',
-          action: this.removeItem
+          action: this.deleteCandidate
         }
       ]
     }
@@ -50,8 +55,12 @@ export default {
     DropdownButton
   },
   methods: {
-    removeItem: function(id) {
-      console.log(`the ${id} will be removed`)
+    deleteCandidate: function(id) {
+      this.$emit('delete-candidate', id)
+    },
+
+    favoriteCandidate: function() {
+      this.$emit('favorite-candidate', this.candidate)
     }
   }
 }
