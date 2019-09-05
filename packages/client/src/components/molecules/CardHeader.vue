@@ -10,8 +10,8 @@
     </section>
 
     <section class="card-header__actions">
-      <Button class="card-header__actions-item" :icon="require('../../assets/star.svg')" />
-      <DropdownButton class="card-header__actions-item" :items="items"/>
+      <Button class="card-header__button" :icon="require('../../assets/star.svg')" />
+      <DropdownButton class="card-header__dropdownbutton" :items="items"/>
     </section>
   </header>
 </template>
@@ -62,7 +62,12 @@ export default {
   margin-bottom: 8px;
 }
 
-.card-header__actions-item + .card-header__actions-item {
+.card-header__button {
+  width: 42px;
+  height: 42px;
+}
+
+.card-header__button + .card-header__dropdownbutton {
   margin-left: 12px;
 }
 

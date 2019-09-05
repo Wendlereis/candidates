@@ -38,6 +38,7 @@ export default {
 
 <style scoped>
 .dropdown-button {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -52,6 +53,9 @@ export default {
   padding: 0;
   margin: 0;
   list-style-type: none;
+      position: absolute;
+    right: 0px;
+    top: 43px;
 }
 
 .dropdown-button__list-item {
