@@ -1,27 +1,25 @@
 <template>
-  <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <Candidates />
 </template>
 
 <script>
-import HelloWorld from './components/pages/HelloWorld'
+import Candidates from './components/pages/Candidates'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Candidates
   }
 }
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Roboto, Helvetica;
-    box-sizing: border-box;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Helvetica;
+  box-sizing: border-box;
+}
 </style>
