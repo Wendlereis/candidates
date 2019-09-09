@@ -7,6 +7,7 @@
   "scripts": {
     "client": "yarn workspace client serve",
     "server": "yarn workspace server start",
+    "test": "yarn workspace client run test:unit",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
