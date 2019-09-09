@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <label :class="style">
-      {{ text }}
-    </label>
-  </div>
+  <label :class="style">
+    {{ text }}
+  </label>
 </template>
 
 <script>
