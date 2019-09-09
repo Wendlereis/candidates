@@ -36,7 +36,7 @@
 
       <span class="card-list_skills">
         <Label class="card-list__description" text="Principais Habilidades:" body />
-        <Badge :key="skill" v-for="skill in candidate.mainSkills" :text="skill" />
+        <Badge class="card-list__skill" :key='index' v-for="(skill, index) in candidate.mainSkills" :text="skill" />
       </span>
     </li>
   </ul>
@@ -64,11 +64,27 @@ export default {
   methods: {
     handleWorks: function(works) {
       const [firstCompany, secondCompany, ...rest] = works
-      this.works = `${firstCompany}, ${secondCompany} e ${rest.length} outras empresas`
+
+      if (rest.length) {
+        this.works = `${firstCompany}, ${secondCompany} e ${rest.length} outras empresas`
+      } else if (secondCompany) {
+        this.works = `${firstCompany} e ${secondCompany}`
+      } else {
+        this.works = `${firstCompany}`
+      }
     },
     handleCities: function(cities) {
       const [firstCity, secondCity, ...rest] = cities
-      this.cities = `Disposto a trabalhar em: ${firstCity}, ${secondCity} e mais ${rest.length} cidades`
+
+      this.cities = 'Disposto a trabalhar em: '
+
+      if (rest.length) {
+        this.cities += `${firstCity}, ${secondCity} e ${rest.length} outras empresas`
+      } else if (secondCity) {
+        this.cities += `${firstCity} e ${secondCity}`
+      } else {
+        this.cities += `${firstCity}`
+      }
     }
   },
   mounted: function() {
@@ -106,5 +122,9 @@ export default {
 
 .card-list_skills {
   display: flex;
+}
+
+.card-list__skill {
+  margin-left: 8px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section :class="{ badge: true, 'is-highlighted': highlight }">
-    <Label v-bind:text="text" body />
+    <Label :text="text" variant="body2" />
   </section>
 </template>
 

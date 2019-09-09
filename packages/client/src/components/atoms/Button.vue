@@ -30,6 +30,10 @@ export default {
   padding: 8px;
 }
 
+.button:focus {
+  outline: 0;
+}
+
 .button img {
   width: 24px;
   height: 24px;
