@@ -9,6 +9,9 @@ This is a monorepo app with a nodejs backend and a vuejs frontend
 
   // run monorepo
   yarn start
+  
+  // run tests
+  yarn test
 ```
 
 
