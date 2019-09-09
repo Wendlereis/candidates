@@ -36,7 +36,7 @@
 
       <span class="card-list_skills">
         <Label class="card-list__description" text="Principais Habilidades:" body />
-        <Badge :key='index' v-for="(skill, index) in candidate.mainSkills" :text="skill" />
+        <Badge class="card-list__skill" :key='index' v-for="(skill, index) in candidate.mainSkills" :text="skill" />
       </span>
     </li>
   </ul>
@@ -122,5 +122,9 @@ export default {
 
 .card-list_skills {
   display: flex;
+}
+
+.card-list__skill {
+  margin-left: 8px;
 }
 </style>
